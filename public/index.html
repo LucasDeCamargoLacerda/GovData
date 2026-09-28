@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GovData — Painel de Gestão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-mark">GD</span>
+      <span class="brand-name">GovData</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item is-active" data-view="overview">
+        <span class="nav-icon" data-icon="grid"></span>
+        Visão geral
+      </a>
+      <a href="#" class="nav-item" data-view="cidadaos">
+        <span class="nav-icon" data-icon="user"></span>
+        Cidadãos
+      </a>
+      <a href="#" class="nav-item" data-view="solicitacoes">
+        <span class="nav-icon" data-icon="file"></span>
+        Solicitações
+      </a>
+      <a href="#" class="nav-item" data-view="orgaos">
+        <span class="nav-icon" data-icon="building"></span>
+        Órgãos
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="api-status">
+        <span class="status-dot" id="apiStatusDot"></span>
+        <span id="apiStatusText">Conectando à API…</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <header class="topbar">
+      <div>
+        <h1>Visão geral</h1>
+        <p class="topbar-sub">Panorama dos serviços públicos cadastrados no GovData</p>
+      </div>
+      <button class="btn-refresh" id="refreshBtn">
+        <span class="nav-icon" data-icon="refresh"></span>
+        Atualizar dados
+      </button>
+    </header>
+
+    <!-- KPI cards -->
+    <section class="kpi-grid">
+      <article class="kpi-card">
+        <span class="kpi-label">Cidadãos cadastrados</span>
+        <span class="kpi-value" id="kpiCidadaos">—</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">Solicitações totais</span>
+        <span class="kpi-value" id="kpiSolicitacoes">—</span>
+      </article>
+      <article class="kpi-card kpi-card--accent">
+        <span class="kpi-label">Solicitações pendentes</span>
+        <span class="kpi-value" id="kpiPendentes">—</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">Tempo médio de atendimento</span>
+        <span class="kpi-value" id="kpiTempoMedio">—<span class="kpi-unit">dias</span></span>
+      </article>
+    </section>
+
+    <!-- Two-column content -->
+    <section class="content-grid">
+
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Categorias mais solicitadas</h2>
+          <span class="panel-note">Por número de solicitações</span>
+        </div>
+        <ol class="ranking-list" id="servicosRanking">
+          <li class="ranking-empty">Carregando…</li>
+        </ol>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Demanda por cidade</h2>
+          <span class="panel-note">Solicitações por cidade do cidadão</span>
+        </div>
+        <ul class="bar-list" id="orgaosDemanda">
+          <li class="ranking-empty">Carregando…</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- Table -->
+    <section class="panel panel--table">
+      <div class="panel-header">
+        <h2>Solicitações recentes</h2>
+        <span class="panel-note" id="tableCount"></span>
+      </div>
+
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Cidadão</th>
+              <th>Serviço</th>
+              <th>Data</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="solicitacoesTableBody">
+            <tr><td colspan="4" class="table-empty">Carregando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
